@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link , useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { signinStart , signinSuccess ,signinFaliure } from '../redux/user/userSlice';
+import Oauth from '../Components/Oauth';
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ const Signin = () => {
         <input type='text' placeholder='email' id='email' className='border p-3 rounded-lg' onChange={handleChange} />
         <input type='text' placeholder='password' id='password' className='border p-3 rounded-lg' onChange={handleChange} />
         <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>{loading?'Loading':'Sign-in'}</button>
+        <Oauth/>
       </form>
       <div className='flex ga-2 mt-5'>
         <p>Don't Have an account ?</p>
