@@ -19,6 +19,7 @@ export default function Oauth  (){
                 },
                 body:JSON.stringify({name:result.user.displayName ,email:result.user.email ,photo:result.user.photoURL}),
             })
+            console.log(result);
             const data = await res.json()
             dispatch(signinSuccess(data))
             navigate('/');
@@ -29,5 +30,6 @@ export default function Oauth  (){
   return (
     <button onClick={handleGoogleClick} type='button'className='bg-red-700 p-3 rounded-lg color text-white hover:opacity-95'>Continue with google</button>
   )
+  
 }
 
