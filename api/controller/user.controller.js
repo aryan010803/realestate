@@ -28,3 +28,13 @@ try {
     console.log(error);
 }
 }
+export const deleteUser = async (req , res , next)=>{
+    if(req.user.id!=req.params.id) return next(errorHandler(401 , 'You can only delete your account'));
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.clearCookie('access_token');
+        res.status(200).json('user deleted successfully');
+    } catch (error) {
+        next(error)
+    }
+}
