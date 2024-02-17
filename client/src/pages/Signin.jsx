@@ -56,7 +56,7 @@ const Signin = () => {
       <div className='flex ga-2 mt-5'>
         <p>Don't Have an account ?</p>
         <Link to={'/signup'}>
-        <span className='text-blue-700 mx-2'>Sign-in</span>
+        <span className='text-blue-700 mx-2'>Sign-up</span>
         </Link>
         
         
