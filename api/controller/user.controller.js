@@ -1,6 +1,8 @@
+import Listing from "../modles/listing.model.js";
 import User from "../modles/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from 'bcryptjs'
+
 
 export const test =(req , res)=>{
     res.json({
@@ -37,4 +39,17 @@ export const deleteUser = async (req , res , next)=>{
     } catch (error) {
         next(error)
     }
+}
+export const getUserListing = async(req , res , next)=>{
+   if(req.user.id===req.params.id){
+    try {
+        const listing = await Listing.find({UserRef:req.params.id})
+        res.status(200).json(listing);
+    } catch (error) {
+        
+    }
+
+   }else{
+    return next(errorHandler(401 , 'only voew your own listing'))
+   }
 }
