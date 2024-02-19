@@ -79,7 +79,7 @@ const Profile = () => {
       if (data.success === false) {
         dispatch(updateUserFail(data.message));
         return;
-      }
+      } 
 
       dispatch(updateUserSuccess(data));
       setUpdateDuccess(true);
