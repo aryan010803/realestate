@@ -50,6 +50,6 @@ export const getUserListing = async(req , res , next)=>{
     }
 
    }else{
-    return next(errorHandler(401 , 'only voew your own listing'))
+    return next(errorHandler(401 , 'only view your own listing'))
    }
 }
