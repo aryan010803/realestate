@@ -45,7 +45,7 @@ export const updateListing = async (req, res, next) => {
 
         res.status(200).json(updatedListing);
     } catch (error) {
-        // Handle the error appropriately (send a response or log it)
+        
         console.error(error);
         return next(errorHandler(500, 'Internal Server Error'));
     }
