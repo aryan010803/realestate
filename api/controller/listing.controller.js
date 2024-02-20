@@ -24,20 +24,42 @@ export const deleteLisiting = async(req , res , next)=>{
         next(error)
     }
 }
-export const updateListing = async(req , res , next)=>{
-    const listing = await Listing.findById(req.params.id);
-    if(!listing){
-        return next(errorHandler(404 , 'Listing not founnd'))
-    }
-    if(req.user.id!==Listing.UserRef){
-        return next(errorHandler(401 , 'You can only update your own Listing '));
-    }
+export const updateListing = async (req, res, next) => {
     try {
+        const listing = await Listing.findById(req.params.id);
+
+        if (!listing) {
+            return next(errorHandler(404, 'Listing not found'));
+        }
+
+        // Assuming UserRef is the field in your Listing model that stores the user reference
+        if (req.user.id !== listing.UserRef.toString()) {
+            return next(errorHandler(401, 'You can only update your own Listing'));
+        }
+
         const updatedListing = await Listing.findByIdAndUpdate(
-            req.params.id,req.body,{new:true}
+            req.params.id,
+            req.body,
+            { new: true }
         );
-        res.status(200).json(updateListing);
+
+        res.status(200).json(updatedListing);
     } catch (error) {
-        
+        // Handle the error appropriately (send a response or log it)
+        console.error(error);
+        return next(errorHandler(500, 'Internal Server Error'));
     }
+};
+
+export const getListing = async(req  , res , next)=>{
+    try {
+        const listing= await Listing.findById(req.params.id)
+        if(!listing){
+            return next(errorHandler(404 ,'Listing not found '));
+        }
+        res.status(200).json(listing);
+    } catch (error) {
+        next(error);
+    }
+
 }
