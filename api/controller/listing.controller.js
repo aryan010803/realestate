@@ -32,7 +32,7 @@ export const updateListing = async (req, res, next) => {
             return next(errorHandler(404, 'Listing not found'));
         }
 
-        // Assuming UserRef is the field in your Listing model that stores the user reference
+        
         if (req.user.id !== listing.UserRef.toString()) {
             return next(errorHandler(401, 'You can only update your own Listing'));
         }
