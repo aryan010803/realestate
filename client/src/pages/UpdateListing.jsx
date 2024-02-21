@@ -24,7 +24,7 @@ const CreateListing = () => {
     bedrooms: 1,
     bathrooms: 1,
     regularPrice: 1000,
-    discountPrice: 0, 
+    discountedPrice: 500, 
     offer: false,
     parking: false,
     furnished: false
@@ -128,7 +128,7 @@ const CreateListing = () => {
     e.preventDefault();
     try {
       if(form.imageUrls.length<1) return seterror("You must have to upload atleast  1 image");
-      if(+form.regularPrice< +form.discountPrice) return seterror("discounted price should be less than regular price");
+      if(+form.regularPrice< +form.discountedPrice) return seterror("discounteded price should be less than regular price");
       setloadig(true)
       seterror(false);
       const res = await fetch(`/api/listing/update/${params.listingId}`, {
@@ -139,7 +139,7 @@ const CreateListing = () => {
         },
         body: JSON.stringify({
           ...form,
-          discountedPrice: form.discountPrice,
+         
           UserRef: currentUser._id,
         }),
       });
@@ -210,9 +210,9 @@ const CreateListing = () => {
         {form.offer &&(
 
       <div className='flex items-center gap-2'>
-        <input className=' w-20 p-3 border-gray-300 rounded-lg'  type='number' id='discountPrice' min='0'  max='100000000' required onChange={handleChange} value={form.discountPrice} />
+        <input className=' w-20 p-3 border-gray-300 rounded-lg'  type='number' id='discountedPrice' min='0'  max='100000000' required onChange={handleChange} value={form.discountedPrice} />
         <div className='flex flex-col items-center'>
-        <p>Discounted price</p>
+        <p>discounteded price</p>
         <span className='text-xs'>($/month)</span>
         </div>
       </div>
