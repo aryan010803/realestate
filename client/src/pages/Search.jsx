@@ -14,7 +14,7 @@ const Search = () => {
                     <div className='flex gap-2'>
                         <input type='checkbox' id='all' className='w-5'/>
                         <span>rent and sale</span>
-                    </div>
+                    </div>  
                     <div className='flex gap-2'>
                         <input type='checkbox' id='sale' className='w-5'/>
                         <span> sale</span>
