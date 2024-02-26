@@ -50,7 +50,7 @@ const Search = () => {
 
                     </select>
                 </div>
-                <button className='bg-slate-700 text-white p-3 rounded-lg hover:opacity-95'>Search</button>
+                <button className='bg-slate-600 text-white p-3 rounded-lg hover:opacity-95'>Search</button>
             </form>
 
         </div>
