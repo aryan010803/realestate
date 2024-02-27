@@ -5,7 +5,7 @@
   import { useNavigate } from 'react-router-dom';
 
   const CreateListing = () => {
-    const navigae  = useNavigate();
+    const navigate = useNavigate();
     const accessToken = typeof document !== 'undefined' && document.cookie
     ? document.cookie.split('; ')
       .find(row => row.startsWith('access_token='))
@@ -137,7 +137,7 @@
         if(data.success===false){
           seterror(data.message);
         }
-        navigae(`/listing/${data._id}`);
+        navigate(`/listing/${data._id}`);
         
       } catch (error) {
         setloadig(false);
