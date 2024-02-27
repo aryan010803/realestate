@@ -7,7 +7,8 @@ import ListingItem from '../Components/ListingItem';
 const Search = () => {
     const[loading , setloading] = useState(false);
     const [listing , setlisting] = useState([]);
-    console.log(listing);
+    const [showmore , setshowmore] = useState(false);
+   
     const [sidebardata , setsidebardata] = useState({
         searchTerm : '',
         type:'all',
@@ -51,15 +52,15 @@ const Search = () => {
         }
         const fetchListings = async () => {
             setloading(true);
-            // setShowMore(false);
+            setshowmore(false);
             const searchQuery = urlParams.toString();
             const res = await fetch(`/api/listing/get?${searchQuery}`);
             const data = await res.json();
-            // if (data.length > 8) {
-            //   setShowMore(true);
-            // } else {
-            //   setShowMore(false);
-            // }
+            if (data.length > 8) {
+              setshowmore(true);
+            } else {
+              setshowmore(false);
+            }
             setlisting(data);
             setloading(false);
           };
@@ -97,6 +98,19 @@ const Search = () => {
         const searchQuery  =urlParams.toString();
         navigate(`/search?${searchQuery}`);
 
+    }
+    const onShowMore=async()=>{
+        const number = listing.length;
+        const startIndex = number;
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('startIndex',startIndex);
+        const searchQuery = urlParams.toString();
+        const res = await fetch(`/api/listing/get?${searchQuery}`);
+        const data = await res.json();
+        if(data.length<9){
+            setshowmore(false);
+        }
+        setlisting([...listing, ...data])
     }
   return (
     <div className='flex flex-col md:flex-row'>
@@ -166,7 +180,11 @@ const Search = () => {
             {!loading && listing &&listing.map((listing)=>(
                 <ListingItem key={listing._id} listing={listing}/>
             ))}
-            </div>    
+            {showmore &&(
+                <button className=' text-green-700 hover:underline p-7' onClick={onShowMore}>Show more</button>
+            )}
+            </div>  
+
         </div>
     </div>
   )
