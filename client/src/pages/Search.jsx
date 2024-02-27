@@ -158,8 +158,8 @@ const Search = () => {
                     <select onChange={handleChange} defaultValue={'created_at_desc'} id='sort_order' className='border rounded-lg p-3'>
                         <option value='regularPrice_desc'> price high to low</option>
                         <option value='regularPrice_asc'>price  low to high</option>
-                        <option value='createdAt_asc'>Latest</option>
-                        <option value='createdAt_desc'>Oldest</option>
+                        <option value='createdAt_desc'>Latest</option>
+                        <option value='createdAt_asc'>Oldest</option>
 
                     </select>
                 </div>
